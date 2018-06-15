@@ -90,7 +90,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             } catch (IllegalArgumentException e) {
                 fileUriStr = target;
             }
-            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getString(2));
+            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
@@ -462,7 +462,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
     {
         if(PermissionHelper.hasPermission(this, permissions[WRITE_EXTERNAL_STORAGE])  &&
                 PermissionHelper.hasPermission(this, permissions[RECORD_AUDIO])) {
-            this.startRecordingAudio(recordId, FileHelper.stripFileProtocol(fileUriStr));
+            
         }
         else if(PermissionHelper.hasPermission(this, permissions[RECORD_AUDIO]))
         {
