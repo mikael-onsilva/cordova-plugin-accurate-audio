@@ -187,11 +187,11 @@ if (cordova.platformId === 'android' || cordova.platformId === 'amazon-fireos' |
 
     var channel = require('cordova/channel');
 
-    channel.createSticky('onMediaPluginReady');
-    channel.waitForInitialization('onMediaPluginReady');
+    channel.createSticky('onAccurateAudioPluginReady');
+    channel.waitForInitialization('onAccurateAudioPluginReady');
 
     channel.onCordovaReady.subscribe(function() {
-        exec(onMessageFromNative, undefined, 'Media', 'messageChannel', []);
-        channel.initializationComplete('onMediaPluginReady');
+        exec(onMessageFromNative, undefined, 'AccurateAudio', 'messageChannel', []);
+        channel.initializationComplete('onAccurateAudioPluginReady');
     });
 }
