@@ -18,8 +18,7 @@ public class AccurateAudio extends CordovaPlugin {
             String message = args.getString(0);
             this.coolMethod(message, callbackContext);
             return true;
-        }
-        if (action.equals('performAdd')) {
+        } else if (action.equals("performAdd")) {
             int arg1 = args.getInt(0);
             int arg2 = args.getInt(1);
             int result = arg1 + arg2;
