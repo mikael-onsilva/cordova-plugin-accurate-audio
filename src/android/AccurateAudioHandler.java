@@ -24,6 +24,9 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class AccurateAudioHandler extends CordovaPlugin {
 
@@ -255,28 +258,30 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * @param file              The name of the audio file.
      */
     public void startPlayingAudio(String id, String file, int when) {
-        Timer timer;
+        public class Reminder {
+            Timer timer;
 
-        public Reminder(int seconds) {
-            timer = new Timer();
-            timer.schedule(new RemindTask(), seconds*1000);
-        }
-
-        class RemindTask extends TimerTask {
-            public void run() {
-                //System.out.println("Time's up");
-                AudioPlayer audio = getOrCreatePlayer(id, file);
-                audio.startPlaying(file);
-                getAudioFocus();
-                
-                timer.cancel();
+            public Reminder(int seconds) {
+                timer = new Timer();
+                timer.schedule(new RemindTask(), seconds*1000);
             }
-        }
 
-        public static void main(String args[]) {
-            new Reminder(when);
-        }
+            class RemindTask extends TimerTask {
+                public void run() {
+                    //System.out.println("Time's up");
+                    AudioPlayer audio = getOrCreatePlayer(id, file);
+                    audio.startPlaying(file);
+                    getAudioFocus();
+                    
+                    timer.cancel();
+                }
+            }
 
+            public static void main(String args[]) {
+                new Reminder(when);
+            }
+
+        }
     }
 
     /**
