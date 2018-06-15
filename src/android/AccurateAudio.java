@@ -22,7 +22,7 @@ public class AccurateAudio extends CordovaPlugin {
             int arg1 = args.getInt(0);
             int arg2 = args.getInt(1);
             int result = arg1 + arg2;
-            callbackContext.success('Resultado calculado pelo Java: ' + result);
+            callbackContext.success("Resultado calculado pelo Java: " + result);
             return true;
         }
         return false;
