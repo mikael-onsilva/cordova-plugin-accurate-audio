@@ -237,7 +237,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * @param id                The id of the audio player
      * @param file              The name of the audio file.
      */
-    public void startPlayingAudio(String id, String file, int when) {
+    public void startPlayingAudio(String id, String file) {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
         audio.startPlaying(file);
         getAudioFocus();        
