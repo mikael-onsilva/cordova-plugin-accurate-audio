@@ -6,12 +6,12 @@
 		xmlns:android="http://schemas.android.com/apk/res/android">
 	<name>Accurate Audio</name>
 	<description>Cordova Accurate Audio Plugin</description>
-    <license>Apache 2.0</license>
-    <keywords>cordova,media,audio,accurate</keywords>
-    <repo>https://github.com/mikael-onsilva/cordova-plugin-accurate-audio.git</repo>
+    <license>MIT</license>
+    <keywords>cordova,media,audio,accurate,timming,metronome</keywords>
+	<repo>https://github.com/mikael-onsilva/cordova-plugin-accurate-audio.git</repo>
 
 	<dependency id="cordova-plugin-file" version="^4.0.0" />
-    <dependency id="cordova-plugin-media" version="2.4.0" />
+    <dependency id="cordova-plugin-compat" version="^1.0.0" />
 
 	<js-module name="AccurateAudio" src="www/AccurateAudio.js">
 		<clobbers target="cordova.plugins.AccurateAudio" />
@@ -24,8 +24,13 @@
 			</feature>
 		</config-file>
 
-		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
+		 <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        </config-file>
 
-		<source-file src="src/android/AccurateAudio.java" target-dir="src/cordova/accurate/audio/AccurateAudio" />
+		<source-file src="src/android/AccurateAudioHandler.java" target-dir="src/cordova/accurate/audio/AccurateAudio" />
+		<source-file src="src/android/AccurateAudioPlayer.java" target-dir="src/cordova/accurate/audio/AccurateAudio" />
 	</platform>
 </plugin>
