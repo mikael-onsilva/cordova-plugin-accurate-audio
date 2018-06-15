@@ -81,27 +81,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         PluginResult.Status status = PluginResult.Status.OK;
         String result = "";
 
-        if (action.equals("startRecordingAudio")) {
-            recordId = args.getString(0);
-            String target = args.getString(1);
-            try {
-                Uri targetUri = resourceApi.remapUri(Uri.parse(target));
-                fileUriStr = targetUri.toString();
-            } catch (IllegalArgumentException e) {
-                fileUriStr = target;
-            }
-            promptForRecord();
-        }
-        else if (action.equals("stopRecordingAudio")) {
-            this.stopRecordingAudio(args.getString(0), true);
-        }
-        else if (action.equals("pauseRecordingAudio")) {
-            this.stopRecordingAudio(args.getString(0), false);
-        }
-        else if (action.equals("resumeRecordingAudio")) {
-            this.resumeRecordingAudio(args.getString(0));
-        }
-        else if (action.equals("startPlayingAudio")) {
+        if (action.equals("startPlayingAudio")) {
             String target = args.getString(1);
             String fileUriStr;
             try {
