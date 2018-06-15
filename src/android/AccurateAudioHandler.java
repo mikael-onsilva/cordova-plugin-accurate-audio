@@ -259,35 +259,10 @@ public class AccurateAudioHandler extends CordovaPlugin {
      */
     public void startPlayingAudio(String id, String file, int when) {
         AudioPlayer audio = getOrCreatePlayer(id, file);
-
-        public static void main(String args[]) {
-            new Reminder(when);
-        }        
-        
+        audio.startPlaying(file);
+        getAudioFocus();        
     }
 
-    public class Reminder {
-        Timer timer;
-
-        public Reminder(int seconds) {
-            timer = new Timer();
-            timer.schedule(new RemindTask(), seconds*1000);
-        }
-
-        class RemindTask extends TimerTask {
-            public void run() {
-                //System.out.println("Time's up");
-                audio.startPlaying(file);
-                getAudioFocus();
-                timer.cancel();
-            }
-        }
-
-        public static void main(String args[]) {
-            new Reminder(when);
-        }
-
-    }
     /**
      * Seek to a location.
      * @param id                The id of the audio player
