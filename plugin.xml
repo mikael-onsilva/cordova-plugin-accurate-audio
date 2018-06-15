@@ -1,11 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<plugin id="cordova-plugin-accurate-audio" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-accurate-audio"
+		version="1.0.0" 
+		xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+		xmlns:android="http://schemas.android.com/apk/res/android">
 	<name>Accurate Audio</name>
 	<description>Cordova Accurate Audio Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,media,audio,accurate</keywords>
-    <!--<repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-media.git</repo>-->
+    <repo>https://github.com/mikael-onsilva/cordova-plugin-accurate-audio.git</repo>
 
 	<dependency id="cordova-plugin-file" version="^4.0.0" />
     <dependency id="cordova-plugin-media" version="2.4.0" />
