@@ -1,0 +1,17 @@
+{
+  "name": "cordova.accurate.audio",
+  "version": "1.0.0",
+  "description": "Cordova Accurate Audio Plugin",
+  "cordova": {
+    "id": "cordova.accurate.audio",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Mikael de Oliveira",
+  "license": "MIT"
+}
