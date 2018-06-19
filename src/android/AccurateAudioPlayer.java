@@ -309,7 +309,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
               tempo = when;
               funcao = callbackContext;
-              
+
               timer = new Timer();
               timer.schedule(new RemindTask(), when*1000);
           } else {
@@ -430,7 +430,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
         // If no player yet, then create one
         else {
             this.prepareOnly = true;
-            this.startPlaying(file);
+            this.startPlaying(file, null, null);
 
             // This will only return value for local, since streaming
             // file hasn't been read yet.

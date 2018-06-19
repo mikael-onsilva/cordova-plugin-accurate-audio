@@ -192,7 +192,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             // If phone idle, then resume playing those players we paused
             else if ("idle".equals(data)) {
                 for (AccurateAudioPlayer audio : this.pausedForPhone) {
-                    audio.startPlaying(null);
+                    audio.startPlaying(null, null, null);
                 }
                 this.pausedForPhone.clear();
             }
@@ -335,7 +335,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
 
     public void resumeAllGainedFocus() {
         for (AccurateAudioPlayer audio : this.pausedForFocus) {
-            audio.startPlaying(null);
+            audio.startPlaying(null, null, null);
         }
         this.pausedForFocus.clear();
     }
