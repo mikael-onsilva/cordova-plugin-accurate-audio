@@ -279,11 +279,12 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     public class Reminder {
       Timer timer;
       int tempo;
-      
+      CallbackContext funcao;
+
       public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
         tempo = when;
 
-        CallbackContext funcao = callbackContext;
+        funcao = callbackContext;
 
         timer = new Timer();
         timer.schedule(new RemindTask(), when*1000);
