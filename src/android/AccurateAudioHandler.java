@@ -272,7 +272,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             funcao.success("Tocou em " + tempo);
             startPlayingAudio(meuID, arquivo, tempo, funcao);
 
-            AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
+            AccurateAudioPlayer audio = getOrCreatePlayer(meuID, arquivo);
             audio.startPlaying(file, when, callbackContext);
             getAudioFocus();        
 
@@ -292,6 +292,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         funcao = callbackContext;
         arquivo = file;
         meuID = id;
+
 
         new Reminder();
         new Agenda(when);
