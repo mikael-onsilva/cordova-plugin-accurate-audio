@@ -90,7 +90,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             } catch (IllegalArgumentException e) {
                 fileUriStr = target;
             }
-            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
+            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getInt(2));
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
@@ -133,9 +133,6 @@ public class AccurateAudioHandler extends CordovaPlugin {
             float f = this.getCurrentAmplitudeAudio(args.getString(0));
             callbackContext.sendPluginResult(new PluginResult(status, f));
             return true;
-        }
-        else if (action.equals("funcTeste")) {
-            this.minhaFuncaoTeste(args.getInt(2), callbackContext);
         }
         else { // Unrecognized action.
             return false;
@@ -239,24 +236,15 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * Start or resume playing audio file.
      * @param id                The id of the audio player
      * @param file              The name of the audio file.
+     * @param when              Quando vai tocar
      */
-    public void startPlayingAudio(String id, String file) {
+    public void startPlayingAudio(String id, String file, int when) {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.startPlaying(file);
+        audio.startPlaying(file, when);
         getAudioFocus();        
     }
 
-    /**
-     * Teste de agenda.
-     * @param when                Quanto tempo depois vai tocar
-     * @param callbackContext     Função de retorno.
-     */
-    public void minhaFuncaoTeste(int when, CallbackContext callbackContext, String id) {
-        AccurateAudioPlayer audio = this.players.get(id);
-        
-        FuncaoTeste(when, callbackContext);
-    }
-
+    
     /**
      * Seek to a location.
      * @param id                The id of the audio player

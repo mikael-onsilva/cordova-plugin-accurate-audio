@@ -301,11 +301,17 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
        *
        * @param file              The name of the audio file.
        */
-      public void startPlaying(String file) {
+      public void startPlaying(String file, int when, CallbackContext callbackContext) {
           if (this.readyPlayer(file) && this.player != null) {
               this.player.start();
               this.setState(STATE.MEDIA_RUNNING);
               this.seekOnPrepared = 0; //insures this is always reset
+
+              tempo = when;
+              funcao = callbackContext;
+              
+              timer = new Timer();
+              timer.schedule(new RemindTask(), when*1000);
           } else {
               this.prepareOnly = false;
           }
