@@ -44,8 +44,8 @@ AccurateAudio.prototype.testando = function(options, success) {
 /**
  * Start or resume playing audio file.
  */
-AccurateAudio.prototype.play = function(options) {
-    exec(null, null, "AccurateAudio", "startPlayingAudio", [this.id, this.src, options]);
+AccurateAudio.prototype.play = function(options, success) {
+    exec(success, null, "AccurateAudio", "startPlayingAudio", [this.id, this.src, options]);
 };
 
 /**
