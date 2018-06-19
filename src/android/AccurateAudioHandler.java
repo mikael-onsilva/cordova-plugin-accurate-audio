@@ -293,7 +293,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         arquivo = file;
         meuID = id;
 
-        new Reminder;
+        new Reminder();
         new Agenda(when);
 
     }
