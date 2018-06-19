@@ -271,7 +271,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         String arquivo;
         String meuID;
 
-        public Agenda(int when) {
+        public void Agenda(int when) {
             timer = new Timer();
             timer.schedule(new RemindTask(), when*1000);    
         }

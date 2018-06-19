@@ -275,6 +275,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     //==========================================================================
     // Playback
     //==========================================================================
+/*
     Timer timer;
     int tempo;
     CallbackContext funcao;
@@ -288,7 +289,6 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
       timer = new Timer();
       timer.schedule(new RemindTask(), when*1000);
     }
-
     class RemindTask extends TimerTask {
       public void run() {
         funcao.success("Tocou em " + tempo);
@@ -296,7 +296,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
         timer.cancel();
       }
     }
-
+*/
       /**
        * Start or resume playing audio file.
        *
