@@ -247,6 +247,12 @@ public class AccurateAudioHandler extends CordovaPlugin {
         getAudioFocus();        
     }
 
+    Timer timer;
+    int tempo;
+    CallbackContext funcao;
+    String arquivo;
+    String meuID;
+
     /**
      * Start or resume playing audio file.
      * @param id                The id of the audio player
