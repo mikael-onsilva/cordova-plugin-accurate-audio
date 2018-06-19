@@ -21,6 +21,9 @@ import java.io.OutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * This class implements the audio playback and recording capabilities used by Cordova.
  * It is called by the AccurateAudioHandler Cordova class.
@@ -271,6 +274,20 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     //==========================================================================
     // Playback
     //==========================================================================
+    Timer timer;
+
+    public void minhaFuncaoTeste(int when, CallbackContext deuCerto) {
+      timer = new Timer();
+      timer.schedule(new RemindTask(), when*1000);
+    }
+
+    class RemindTask extends TimerTask {
+      public void run() {
+        System.out.println("Time's up!");
+        deuCerto(when);
+        timer.cancel();
+      }
+    }
 
     /**
      * Start or resume playing audio file.

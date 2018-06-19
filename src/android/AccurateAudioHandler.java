@@ -134,6 +134,9 @@ public class AccurateAudioHandler extends CordovaPlugin {
             callbackContext.sendPluginResult(new PluginResult(status, f));
             return true;
         }
+        else if (action.equals("funcTeste")) {
+            this.minhaFuncaoTeste(args.getNumber(2), callbackContext);
+        }
         else { // Unrecognized action.
             return false;
         }
