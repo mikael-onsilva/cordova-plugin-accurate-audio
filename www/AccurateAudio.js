@@ -37,7 +37,7 @@ AccurateAudio.get = function(id) {
     return mediaObjects[id];
 };
 
-AccurateAudio.prototype.testando = function(options, success) {
+AccurateAudio.prototype.agenda = function(options, success) {
 	exec(success, null, "AccurateAudio", "schedule", [this.id, this.src, options]);
 };
 
