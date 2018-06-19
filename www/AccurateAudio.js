@@ -37,6 +37,10 @@ AccurateAudio.get = function(id) {
     return mediaObjects[id];
 };
 
+AccurateAudio.prototype.testando = function(options, deuCerto) {
+	exec(deuCerto, null, "AccurateAudio", "funcTeste", [this.id, this.src, options]);
+};
+
 /**
  * Start or resume playing audio file.
  */
@@ -63,6 +67,7 @@ AccurateAudio.prototype.seekTo = function(milliseconds) {
         me._position = p;
     }, this.errorCallback, "AccurateAudio", "seekToAudio", [this.id, milliseconds]);
 };
+
 
 /**
  * Pause playing audio file.
@@ -178,6 +183,8 @@ module.exports = AccurateAudio;
 function onMessageFromNative(msg) {
     if (msg.action == 'status') {
         AccurateAudio.onStatus(msg.status.id, msg.status.msgType, msg.status.value);
+    } else if (msg.action == 'teste') {
+
     } else {
         throw new Error('Unknown media action' + msg.action);
     }
