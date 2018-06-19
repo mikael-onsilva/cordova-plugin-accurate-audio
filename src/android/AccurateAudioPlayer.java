@@ -276,7 +276,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     // Playback
     //==========================================================================
     Timer timer;
-    double tempo;
+    int tempo;
     String arquivo;
 
 /*
@@ -296,11 +296,11 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
       }
     }
 
-    public void agendaPlay(String file, double when) {
+    public void agendaPlay(String file, int when) {
         arquivo = file;
         tempo = when;
         timer = new Timer();
-        timer.schedule(new RemindTask(), when*1000);
+        timer.schedule(new RemindTask(), when);
     }
       /**
        * Start or resume playing audio file.
