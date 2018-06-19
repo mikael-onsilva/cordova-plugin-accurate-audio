@@ -279,7 +279,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     int tempo;
     CallbackContext funcao;
 
-    public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
+    public void FuncaoTeste(int when, CallbackContext callbackContext) {
       tempo = when;
 
       funcao = callbackContext;

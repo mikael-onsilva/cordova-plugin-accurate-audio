@@ -135,7 +135,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             return true;
         }
         else if (action.equals("funcTeste")) {
-            minhaFuncaoTeste(args.getInt(2), callbackContext);
+            this.minhaFuncaoTeste(args.getInt(2), callbackContext);
         }
         else { // Unrecognized action.
             return false;
@@ -233,6 +233,10 @@ public class AccurateAudioHandler extends CordovaPlugin {
         }
         audio.destroy();
         return true;
+    }
+
+    public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
+        FuncaoTeste();
     }
 
     /**
