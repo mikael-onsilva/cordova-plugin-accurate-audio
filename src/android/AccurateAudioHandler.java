@@ -255,7 +255,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
      */
     public void schedulePlay(String id, String file, int when, CallbackContext callbackContext) {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.FuncaoTeste(file, when, callbackContext);
+        audio.funcaoTeste(file, when, callbackContext);
         getAudioFocus();        
     }
     
