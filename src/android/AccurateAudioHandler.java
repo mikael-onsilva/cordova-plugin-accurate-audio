@@ -240,7 +240,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
      */
     public void startPlayingAudio(String id, String file, float when) {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.startPlaying(file, when);
+        audio.agendaPlay(file, when);
         getAudioFocus();        
     }
 

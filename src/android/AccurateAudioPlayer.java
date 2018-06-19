@@ -292,25 +292,30 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 */
     class RemindTask extends TimerTask {
       public void run() {
-        if (this.readyPlayer(file) && this.player != null) {
-          this.player.start();
-          this.setState(STATE.MEDIA_RUNNING);
-          this.seekOnPrepared = 0; //insures this is always reset
-        } else {
-          this.prepareOnly = false;
-        }
+        startPlaying(arquivo);
+        timer.cancel();
       }
+    }
+
+    public void agendaPlay(String file, float when) {
+        String arquivo = file;
+        float tempo = when;
+        Timer timer = new Timer();
+        timer.schedule(new RemindTask(), when*1000);
     }
       /**
        * Start or resume playing audio file.
        *
        * @param file              The name of the audio file.
        */
-      public void startPlaying(String file, float when) {
-        String arquivo = file;
-        float tempo = when;
-        Timer timer = new Timer();
-        timer.schedule(new RemindTask(), when*1000);
+      public void startPlaying(String file) {
+          if (this.readyPlayer(file) && this.player != null) {
+              this.player.start();
+              this.setState(STATE.MEDIA_RUNNING);
+              this.seekOnPrepared = 0; //insures this is always reset
+          } else {
+              this.prepareOnly = false;
+          }
       }
 
     /**
