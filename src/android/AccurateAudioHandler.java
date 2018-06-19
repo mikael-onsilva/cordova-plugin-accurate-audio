@@ -262,9 +262,9 @@ public class AccurateAudioHandler extends CordovaPlugin {
     String meuID;
 
     public class Reminder {
-        public void Reminder(int when) {
+        public void Reminder(int tempo) {
             timer = new Timer();
-            timer.schedule(new RemindTask(), when*1000);    
+            timer.schedule(new RemindTask(), tempo*1000);    
         }
 
         class RemindTask extends TimerTask {
@@ -293,7 +293,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         arquivo = file;
         meuID = id;    
         
-        new Reminder(5);
+        new Reminder();
     }
    
     /**
