@@ -38,7 +38,7 @@ AccurateAudio.get = function(id) {
 };
 
 AccurateAudio.prototype.testando = function(options, success) {
-	exec(success, null, "AccurateAudio", "funcTeste", [this.id, this.src, options]);
+	exec(success, null, "AccurateAudio", "schedule", [this.id, this.src, options]);
 };
 
 /**
