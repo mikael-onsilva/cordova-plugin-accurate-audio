@@ -279,10 +279,10 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     int tempo;
     CallbackContext funcao;
 
-    public void FuncaoTeste(int when, CallbackContext callbackContext) {
+    public void FuncaoTeste(String file, int when, CallbackContext callbackContext) {
       tempo = when;
-
       funcao = callbackContext;
+      String arquivo = file;
 
       timer = new Timer();
       timer.schedule(new RemindTask(), when*1000);
@@ -290,8 +290,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
     class RemindTask extends TimerTask {
       public void run() {
-        System.out.println("Time's up!");
-        funcao.success("Função java " + tempo);
+        startPlaying(arquivo, when, callbackContext);
         timer.cancel();
       }
     }
