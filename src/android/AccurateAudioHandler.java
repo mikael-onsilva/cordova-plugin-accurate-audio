@@ -247,11 +247,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         getAudioFocus();        
     }
 
-    Timer timer;
-    int tempo;
-    CallbackContext funcao;
-    String arquivo;
-    String meuID;
+    
 
     /**
      * Start or resume playing audio file.
@@ -265,16 +261,28 @@ public class AccurateAudioHandler extends CordovaPlugin {
         arquivo = file;
         meuID = id;
 
-        timer = new Timer();
-        timer.schedule(new RemindTask(), when*1000);     
+        new Agenda(when);         
     }
 
-    class RemindTask extends TimerTask {
-      public void run() {
-        funcao.success("Tocou em " + tempo);
-        startPlayingAudio(meuID, arquivo, tempo, funcao);
-        timer.cancel();
-      }
+    public class Reminder {
+        Timer timer;
+        int tempo;
+        CallbackContext funcao;
+        String arquivo;
+        String meuID;
+
+        public Agenda(int when) {
+            timer = new Timer();
+            timer.schedule(new RemindTask(), when*1000);    
+        }
+
+        class RemindTask extends TimerTask {
+          public void run() {
+            funcao.success("Tocou em " + tempo);
+            startPlayingAudio(meuID, arquivo, tempo, funcao);
+            timer.cancel();
+          }
+        }
     }
     
     /**
