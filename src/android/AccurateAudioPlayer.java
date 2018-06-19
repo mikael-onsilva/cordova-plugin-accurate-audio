@@ -276,7 +276,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     // Playback
     //==========================================================================
     Timer timer;
-    float tempo;
+    double tempo;
     String arquivo;
 
 /*
@@ -296,7 +296,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
       }
     }
 
-    public void agendaPlay(String file, float when) {
+    public void agendaPlay(String file, double when) {
         arquivo = file;
         tempo = when;
         timer = new Timer();
