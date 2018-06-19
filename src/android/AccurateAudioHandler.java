@@ -135,6 +135,14 @@ public class AccurateAudioHandler extends CordovaPlugin {
             return true;
         }
         else if (action.equals("schedule")) {
+            String target = args.getString(1);
+            String fileUriStr;
+            try {
+                Uri targetUri = resourceApi.remapUri(Uri.parse(target));
+                fileUriStr = targetUri.toString();
+            } catch (IllegalArgumentException e) {
+                fileUriStr = target;
+            }
             this.schedulePlay(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getInt(2), callbackContext);
         }
         else { // Unrecognized action.
@@ -254,7 +262,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
     String meuID;
 
     //public class Reminder {
-        public Agenda(int when) {
+        public void Agenda(int when) {
             timer = new Timer();
             timer.schedule(new RemindTask(), when*1000);    
         }
@@ -263,6 +271,11 @@ public class AccurateAudioHandler extends CordovaPlugin {
           public void run() {
             funcao.success("Tocou em " + tempo);
             startPlayingAudio(meuID, arquivo, tempo, funcao);
+
+            AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
+            audio.startPlaying(file, when, callbackContext);
+            getAudioFocus();        
+
             timer.cancel();
           }
         }
@@ -280,7 +293,9 @@ public class AccurateAudioHandler extends CordovaPlugin {
         arquivo = file;
         meuID = id;
 
-        new Agenda(when);         
+        public static void main(String args[]) {
+            new Agenda(when);
+        }      
     }
    
     /**
