@@ -275,35 +275,42 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     //==========================================================================
     // Playback
     //==========================================================================
-    Timer timer;
+    
+    public class Reminder {
+      Timer timer;
 
-    public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
-      timer = new Timer();
-      timer.schedule(new RemindTask(), when*1000);
-    }
+      public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
+        timer = new Timer();
+        timer.schedule(new RemindTask(), when*1000);
 
-    class RemindTask extends TimerTask {
-      public void run() {
-        System.out.println("Time's up!");
-        callbackContext.success();
-        timer.cancel();
+        int tempo = when;
+
+        CallbackContext funcao = callbackContext;
+      }
+
+      class RemindTask extends TimerTask {
+        public void run() {
+          System.out.println("Time's up!");
+          funcao.success(tempo);
+          timer.cancel();
+        }
       }
     }
 
-    /**
-     * Start or resume playing audio file.
-     *
-     * @param file              The name of the audio file.
-     */
-    public void startPlaying(String file) {
-        if (this.readyPlayer(file) && this.player != null) {
-            this.player.start();
-            this.setState(STATE.MEDIA_RUNNING);
-            this.seekOnPrepared = 0; //insures this is always reset
-        } else {
-            this.prepareOnly = false;
-        }
-    }
+      /**
+       * Start or resume playing audio file.
+       *
+       * @param file              The name of the audio file.
+       */
+      public void startPlaying(String file) {
+          if (this.readyPlayer(file) && this.player != null) {
+              this.player.start();
+              this.setState(STATE.MEDIA_RUNNING);
+              this.seekOnPrepared = 0; //insures this is always reset
+          } else {
+              this.prepareOnly = false;
+          }
+      }
 
     /**
      * Seek or jump to a new time in the track.
