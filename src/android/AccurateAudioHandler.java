@@ -90,7 +90,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             } catch (IllegalArgumentException e) {
                 fileUriStr = target;
             }
-            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
+            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getFloat(2));
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
@@ -238,9 +238,9 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * @param file              The name of the audio file.
      * @param when              Quando vai tocar
      */
-    public void startPlayingAudio(String id, String file) {
+    public void startPlayingAudio(String id, String file, float when) {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.startPlaying(file);
+        audio.startPlaying(file, when);
         getAudioFocus();        
     }
 
