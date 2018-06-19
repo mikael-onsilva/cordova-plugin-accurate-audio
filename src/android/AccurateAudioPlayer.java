@@ -59,9 +59,9 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     // Media error codes
     private static int MEDIA_ERR_NONE_ACTIVE    = 0;
     private static int MEDIA_ERR_ABORTED        = 1;
-//    private static int MEDIA_ERR_NETWORK        = 2;
-//    private static int MEDIA_ERR_DECODE         = 3;
-//    private static int MEDIA_ERR_NONE_SUPPORTED = 4;
+    //private static int MEDIA_ERR_NETWORK        = 2;
+    //private static int MEDIA_ERR_DECODE         = 3;
+    //private static int MEDIA_ERR_NONE_SUPPORTED = 4;
 
     private AccurateAudioHandler handler;           // The AccurateAudioHandler object
     private String id;                      // The id of this player (used to identify Media object in JavaScript)
