@@ -291,11 +291,9 @@ public class AccurateAudioHandler extends CordovaPlugin {
         tempo = when;
         funcao = callbackContext;
         arquivo = file;
-        meuID = id;
-
-        public static void main(String args[]) {
-            new agenda(5);
-        }
+        meuID = id;    
+        
+        new agenda(5);
     }
    
     /**
