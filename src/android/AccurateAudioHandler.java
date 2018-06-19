@@ -90,7 +90,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             } catch (IllegalArgumentException e) {
                 fileUriStr = target;
             }
-            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getInt(2), callbackContext);
+            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
@@ -203,7 +203,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             // If phone idle, then resume playing those players we paused
             else if ("idle".equals(data)) {
                 for (AccurateAudioPlayer audio : this.pausedForPhone) {
-                    audio.startPlaying(null, 0, null);
+                    audio.startPlaying(null);
                 }
                 this.pausedForPhone.clear();
             }
@@ -249,53 +249,13 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * @param file              The name of the audio file.
      * @param when              Quando vai tocar
      */
-    public void startPlayingAudio(String id, String file, int when, CallbackContext callbackContext) {
+    public void startPlayingAudio(String id, String file) {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.startPlaying(file, when, callbackContext);
+        audio.startPlaying(file);
         getAudioFocus();        
     }
 
-    Timer timer;
-    int tempo;
-    CallbackContext funcao;
-    String arquivo;
-    String meuID;
-
-    public class Reminder {
-        public void Reminder(int tempo) {
-            timer = new Timer();
-            timer.schedule(new RemindTask(), tempo*1000);    
-        }
-
-        class RemindTask extends TimerTask {
-          public void run() {
-            funcao.success("Tocou em " + tempo);
-            startPlayingAudio(meuID, arquivo, tempo, funcao);
-
-            AccurateAudioPlayer audio = getOrCreatePlayer(meuID, arquivo);
-            audio.startPlaying(arquivo, tempo, funcao);
-            getAudioFocus();        
-
-            timer.cancel();
-          }
-        }
-    }
-
-    /**
-     * Start or resume playing audio file.
-     * @param id                The id of the audio player
-     * @param file              The name of the audio file.
-     * @param when              Quando vai tocar
-     */
-    public void schedulePlay(String id, String file, int when, CallbackContext callbackContext) {
-        tempo = when;
-        funcao = callbackContext;
-        arquivo = file;
-        meuID = id;    
-        
-        new Reminder();
-    }
-   
+       
     /**
      * Seek to a location.
      * @param id                The id of the audio player
@@ -386,7 +346,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
 
     public void resumeAllGainedFocus() {
         for (AccurateAudioPlayer audio : this.pausedForFocus) {
-            audio.startPlaying(null, 0, null);
+            audio.startPlaying(null);
         }
         this.pausedForFocus.clear();
     }

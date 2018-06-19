@@ -292,7 +292,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     class RemindTask extends TimerTask {
       public void run() {
         funcao.success("Tocou em " + tempo);
-        startPlaying(arquivo, tempo, funcao);
+        startPlaying(arquivo);
         timer.cancel();
       }
     }
@@ -302,7 +302,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
        *
        * @param file              The name of the audio file.
        */
-      public void startPlaying(String file, int when, CallbackContext callbackContext) {
+      public void startPlaying(String file) {
           if (this.readyPlayer(file) && this.player != null) {
               this.player.start();
               this.setState(STATE.MEDIA_RUNNING);
@@ -425,7 +425,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
         // If no player yet, then create one
         else {
             this.prepareOnly = true;
-            this.startPlaying(file, 0, null);
+            this.startPlaying(file);
 
             // This will only return value for local, since streaming
             // file hasn't been read yet.
