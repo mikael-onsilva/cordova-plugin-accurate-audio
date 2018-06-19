@@ -269,7 +269,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         new Agenda(when);         
     }
 
-    public class Reminder {
+    //public class Reminder {
         public void Agenda(int when) {
             timer = new Timer();
             timer.schedule(new RemindTask(), when*1000);    
@@ -282,7 +282,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             timer.cancel();
           }
         }
-    }
+    //}
     
     /**
      * Seek to a location.
