@@ -254,9 +254,21 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * @param when              Quando vai tocar
      */
     public void schedulePlay(String id, String file, int when, CallbackContext callbackContext) {
-        AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.funcaoTeste(file, when, callbackContext);
-        getAudioFocus();        
+        tempo = when;
+        funcao = callbackContext;
+        arquivo = file;
+        meuID = id;
+
+        timer = new Timer();
+        timer.schedule(new RemindTask(), when*1000);     
+    }
+
+    class RemindTask extends TimerTask {
+      public void run() {
+        funcao.success("Tocou em " + tempo);
+        startPlayingAudio(meuID, arquivo, tempo, funcao);
+        timer.cancel();
+      }
     }
     
     /**
