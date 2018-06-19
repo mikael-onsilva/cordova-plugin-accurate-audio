@@ -275,27 +275,24 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     //==========================================================================
     // Playback
     //==========================================================================
-    
-    public class Reminder {
-      Timer timer;
-      int tempo;
-      CallbackContext funcao;
+    Timer timer;
+    int tempo;
+    CallbackContext funcao;
 
-      public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
-        tempo = when;
+    public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
+      tempo = when;
 
-        funcao = callbackContext;
+      funcao = callbackContext;
 
-        timer = new Timer();
-        timer.schedule(new RemindTask(), when*1000);
-      }
+      timer = new Timer();
+      timer.schedule(new RemindTask(), when*1000);
+    }
 
-      class RemindTask extends TimerTask {
-        public void run() {
-          System.out.println("Time's up!");
-          funcao.success(tempo);
-          timer.cancel();
-        }
+    class RemindTask extends TimerTask {
+      public void run() {
+        System.out.println("Time's up!");
+        funcao.success(tempo);
+        timer.cancel();
       }
     }
 
