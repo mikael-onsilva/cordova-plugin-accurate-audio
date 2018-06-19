@@ -235,8 +235,13 @@ public class AccurateAudioHandler extends CordovaPlugin {
         return true;
     }
 
+    /**
+     * Teste de agenda.
+     * @param when                Quanto tempo depois vai tocar
+     * @param callbackContext     Função de retorno.
+     */
     public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
-        FuncaoTeste();
+        FuncaoTeste(when, callbackContext);
     }
 
     /**
