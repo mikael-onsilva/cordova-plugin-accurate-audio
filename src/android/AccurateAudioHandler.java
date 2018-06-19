@@ -236,16 +236,6 @@ public class AccurateAudioHandler extends CordovaPlugin {
     }
 
     /**
-     * Teste de agenda.
-     * @param when                Quanto tempo depois vai tocar
-     * @param callbackContext     Função de retorno.
-     */
-    public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
-        AccurateAudioPlayer varTeste;
-        FuncaoTeste(when, callbackContext);
-    }
-
-    /**
      * Start or resume playing audio file.
      * @param id                The id of the audio player
      * @param file              The name of the audio file.
@@ -254,6 +244,17 @@ public class AccurateAudioHandler extends CordovaPlugin {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
         audio.startPlaying(file);
         getAudioFocus();        
+    }
+
+    /**
+     * Teste de agenda.
+     * @param when                Quanto tempo depois vai tocar
+     * @param callbackContext     Função de retorno.
+     */
+    public void minhaFuncaoTeste(int when, CallbackContext callbackContext, String id) {
+        AccurateAudioPlayer audio = this.players.get(id);
+        
+        FuncaoTeste(when, callbackContext);
     }
 
     /**
