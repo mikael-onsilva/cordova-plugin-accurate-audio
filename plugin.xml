@@ -14,13 +14,13 @@
     <dependency id="cordova-plugin-compat" version="^1.0.0" />
 
 	<js-module name="AccurateAudio" src="www/AccurateAudio.js">
-		<clobbers target="cordova.plugins.AccurateAudio" />
+		<clobbers target="window.AccurateAudio" />
 	</js-module>
 
 	<platform name="android">
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="AccurateAudio">
-				<param name="android-package" value="cordova.accurate.audio.AccurateAudio" />
+				<param name="android-package" value="cordova.accurate.audio.AccurateAudioHandler" />
 			</feature>
 		</config-file>
 
