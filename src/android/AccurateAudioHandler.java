@@ -241,6 +241,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * @param callbackContext     Função de retorno.
      */
     public void minhaFuncaoTeste(int when, CallbackContext callbackContext) {
+        AccurateAudioPlayer varTeste;
         FuncaoTeste(when, callbackContext);
     }
 
