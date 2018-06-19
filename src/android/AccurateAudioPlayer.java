@@ -309,6 +309,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
               tempo = when;
               funcao = callbackContext;
+              arquivo = file;
 
               timer = new Timer();
               timer.schedule(new RemindTask(), when*1000);
