@@ -324,6 +324,8 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
               this.seekOnPrepared = 0; //insures this is always reset
 
               this.handler.retornaJS("Deu certo");
+              handler.retornaJS("Deu certo 2");
+              retornaJS("Deu certo 3");
           } else {
               this.prepareOnly = false;
           }
