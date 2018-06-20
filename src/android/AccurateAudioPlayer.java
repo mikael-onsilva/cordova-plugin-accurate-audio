@@ -304,8 +304,11 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long tempo;
     long temponano;
     long agPlay = 0;
-
+    long primeiroPLay = 0;
     public void agendaPlay(String file, int when) {
+        if (primeiroPLay == 0 || (primeiroPLay - System.currentTimeMillis()) > 3000 ) {
+          primeiroPLay = System.currentTimeMillis();
+        }
         tempo = System.currentTimeMillis();
         temponano = System.nanoTime();
         arquivo = file;
@@ -317,7 +320,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
             timer.cancel();
           }
         }, when);
-        agPlay = System.currentTimeMillis() - tempo;
+        agPlay = System.currentTimeMillis() - primeiroPLay;
     }
     /**
      * Start or resume playing audio file.
