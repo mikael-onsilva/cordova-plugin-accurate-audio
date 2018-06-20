@@ -91,7 +91,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             } catch (IllegalArgumentException e) {
                 fileUriStr = target;
             }
-            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getInt(2), callbackContext);
+            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getInt(2));
             ;
         }
         else if (action.equals("seekToAudio")) {
