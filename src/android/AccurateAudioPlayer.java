@@ -24,6 +24,8 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
+
 
 /**
  * This class implements the audio playback and recording capabilities used by Cordova.
