@@ -298,14 +298,14 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     String arquivo;
     int quando;
     long start = System.currentTimeMillis();
-    public void agendaPlay(String file, int when) {
+    public void agendaPlay(String file, int when, CallbackContext callbackContext) {
         arquivo = file;
         quando = when;
 
         timer = new Timer();
         timer.schedule(new TimerTask() {
           public void run() {
-            startPlaying(arquivo);
+            startPlaying(arquivo, callbackContext);
             timer.cancel();
           }
         }, when);
@@ -315,11 +315,12 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
        *
        * @param file              The name of the audio file.
        */
-      public void startPlaying(String file) {
+      public void startPlaying(String file, CallbackContext callbackContext) {
           if (this.readyPlayer(file) && this.player != null) {
               this.player.start();
               this.setState(STATE.MEDIA_RUNNING);
               this.seekOnPrepared = 0; //insures this is always reset
+              callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, "teste"));
           } else {
               this.prepareOnly = false;
           }
