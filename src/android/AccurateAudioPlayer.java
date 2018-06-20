@@ -336,7 +336,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     }
 
     private void sendRetorno() {
-        this.handler.webView.loadUrl("javascript:console.log('" + (when - agPlay) + "');");
+        this.handler.webView.loadUrl("javascript:console.log('" + (quando - agPlay) + "');");
     }
 
     /**
