@@ -329,8 +329,8 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     }
 
     private void sendRetorno() {
-        AccurateAudioHandler teste = new AccurateAudioHandler();
-        teste.retornaJS("Deu certo");
+        handler.webView.loadUrl("javascript:console.log('hello');");
+        //teste.retornaJS("Deu certo");
     }
 
     /**
