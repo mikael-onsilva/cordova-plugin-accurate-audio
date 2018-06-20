@@ -324,9 +324,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
               this.setState(STATE.MEDIA_RUNNING);
               this.seekOnPrepared = 0; //insures this is always reset
 
-              PluginResult pgRes = new PluginResult(PluginResult.Status.OK, "message");
-              pgRes.setKeepCallback(true);
-              retorno.sendPluginResult(pgRes);
+              this.handler.retornaJS("Deu certo");
           } else {
               this.prepareOnly = false;
           }

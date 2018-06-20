@@ -68,8 +68,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         PermissionHelper.requestPermission(this, requestCode, permissions[RECORD_AUDIO]);
     }
 
-    public CallbackContext retorno;
-
+    CallbackContext retorno;
     /**
      * Executes the request and returns PluginResult.
      * @param action        The action to execute.
@@ -81,8 +80,8 @@ public class AccurateAudioHandler extends CordovaPlugin {
         CordovaResourceApi resourceApi = webView.getResourceApi();
         PluginResult.Status status = PluginResult.Status.OK;
         String result = "";
-        this.retorno = callbackContext;
-        
+        retorno = callbackContext;
+
         if (action.equals("startPlayingAudio")) {
             String target = args.getString(1);
             String fileUriStr;
@@ -93,6 +92,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
                 fileUriStr = target;
             }
             this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getInt(2), callbackContext);
+            ;
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
@@ -194,7 +194,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             // If phone idle, then resume playing those players we paused
             else if ("idle".equals(data)) {
                 for (AccurateAudioPlayer audio : this.pausedForPhone) {
-                    audio.startPlaying(null, null);
+                    audio.startPlaying(null);
                 }
                 this.pausedForPhone.clear();
             }
@@ -240,9 +240,9 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * @param file              The name of the audio file.
      * @param when              Quando vai tocar
      */
-    public void startPlayingAudio(String id, String file, int when, CallbackContext callbackContext) {
+    public void startPlayingAudio(String id, String file, int when) {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.agendaPlay(file, when, callbackContext);
+        audio.agendaPlay(file, when);
         getAudioFocus();        
     }
 
@@ -337,7 +337,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
 
     public void resumeAllGainedFocus() {
         for (AccurateAudioPlayer audio : this.pausedForFocus) {
-            audio.startPlaying(null, null);
+            audio.startPlaying(null);
         }
         this.pausedForFocus.clear();
     }
@@ -423,6 +423,12 @@ public class AccurateAudioHandler extends CordovaPlugin {
             cordova.getActivity().setVolumeControlStream(origVolumeStream);
             origVolumeStream = -1;
         }
+    }
+
+    void retornaJS(String msg) {
+        PluginResult resultado = new PluginResult(PluginResult.Status.OK, msg);
+        resultado.setKeepCallback(true);
+        retorno.sendPluginResult(resultado);
     }
 
     void sendEventMessage(String action, JSONObject actionData) {
