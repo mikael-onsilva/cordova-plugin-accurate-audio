@@ -307,8 +307,11 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long primeiroPLay = 0;
     long testeVar;
     public void agendaPlay(String file, int when) {
-        if (primeiroPLay < 10) {
+        if (primeiroPLay == 10) {
           primeiroPLay = System.currentTimeMillis();
+          this.handler.webView.loadUrl("javascript:console.log('PP: " + (primeiroPLay) + "');");
+        } else {
+          this.handler.webView.loadUrl("javascript:console.log('pp: " + (primeiroPLay) + "');");
         }
         tempo = System.currentTimeMillis();
         temponano = System.nanoTime();
@@ -330,7 +333,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
      */
     public void startPlaying(String file) {
         if (this.readyPlayer(file) && this.player != null) {
-            sendRetorno();
+            //sendRetorno();
             this.player.start();
             this.setState(STATE.MEDIA_RUNNING);
             this.seekOnPrepared = 0; //insures this is always reset
