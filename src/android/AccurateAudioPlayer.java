@@ -307,10 +307,12 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long agPlay = 0;
     Long primeiroPLay = new Long(0);
     long testeVar;
+    boolean teste = true;
     public void agendaPlay(String file, int when) {
-        if (Long primeiroPLay.equals(new Long(0))) {
-          Long primeiroPLay = System.currentTimeMillis();
+        if (teste) {
+          primeiroPLay = System.currentTimeMillis();
           this.handler.webView.loadUrl("javascript:console.log('PP: " + (primeiroPLay) + "');");
+          teste = false;
         } else {
           this.handler.webView.loadUrl("javascript:console.log('pp: " + (primeiroPLay) + "');");
         }
