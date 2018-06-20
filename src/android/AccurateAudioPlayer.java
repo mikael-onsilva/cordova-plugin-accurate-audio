@@ -25,6 +25,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
+import java.lang.*;
 
 
 /**
@@ -304,10 +305,10 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long tempo;
     long temponano;
     long agPlay = 0;
-    long primeiroPLay = 0L;
+    long primeiroPLay = new Long(0);
     long testeVar;
     public void agendaPlay(String file, int when) {
-        if (primeiroPLay.equals(0L)) {
+        if (primeiroPLay.equals(new Long(0))) {
           primeiroPLay = System.currentTimeMillis();
           this.handler.webView.loadUrl("javascript:console.log('PP: " + (primeiroPLay) + "');");
         } else {
