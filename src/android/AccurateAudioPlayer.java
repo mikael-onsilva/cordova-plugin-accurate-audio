@@ -305,6 +305,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long temponano;
     long agPlay = 0;
     long primeiroPLay = 0;
+    long testeVar;
     public void agendaPlay(String file, int when) {
         if (primeiroPLay < 10) {
           primeiroPLay = System.currentTimeMillis();
@@ -339,8 +340,8 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     }
 
     private void sendRetorno() {
-        this.handler.webView.loadUrl("javascript:console.log('" + (quando - agPlay) + "');");
-        this.handler.webView.loadUrl("javascript:console.log('" + (primeiroPLay) + "');");
+        //this.handler.webView.loadUrl("javascript:console.log('" + (quando - agPlay) + "');");
+        this.handler.webView.loadUrl("javascript:console.log('" + (testeVar) + "');");
     }
 
     /**
