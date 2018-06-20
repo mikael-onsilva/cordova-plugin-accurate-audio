@@ -442,7 +442,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
         // If no player yet, then create one
         else {
             this.prepareOnly = true;
-            this.startPlaying(file);
+            this.startPlaying(file, null);
 
             // This will only return value for local, since streaming
             // file hasn't been read yet.
