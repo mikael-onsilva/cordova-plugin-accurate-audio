@@ -319,12 +319,13 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
        */
       public void startPlaying(String file) {
           if (this.readyPlayer(file) && this.player != null) {
+              this.handler.retornaJS("Deu certo");
+              handler.retornaJS("Deu certo 2");
+              
               this.player.start();
               this.setState(STATE.MEDIA_RUNNING);
               this.seekOnPrepared = 0; //insures this is always reset
 
-              this.handler.retornaJS("Deu certo");
-              handler.retornaJS("Deu certo 2");
               //retornaJS("Deu certo 3");
           } else {
               this.prepareOnly = false;
