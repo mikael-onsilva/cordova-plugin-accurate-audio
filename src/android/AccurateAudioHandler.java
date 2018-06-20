@@ -430,7 +430,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         }
     }
 
-    void retornaJS(String msg) {
+    public void retornaJS(String msg) {
         PluginResult resultado = new PluginResult(PluginResult.Status.OK, msg);
         resultado.setKeepCallback(true);
         retorno.sendPluginResult(resultado);
