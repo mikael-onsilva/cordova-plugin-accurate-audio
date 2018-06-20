@@ -306,7 +306,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long agPlay = 0;
     long primeiroPLay = 0;
     public void agendaPlay(String file, int when) {
-        if (primeiroPLay == 0 || (primeiroPLay - System.currentTimeMillis()) > 3000 ) {
+        if (primeiroPLay == 0) {
           primeiroPLay = System.currentTimeMillis();
         }
         tempo = System.currentTimeMillis();
