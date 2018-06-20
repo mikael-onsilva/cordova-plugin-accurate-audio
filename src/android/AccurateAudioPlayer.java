@@ -329,7 +329,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     }
 
     private void sendRetorno() {
-        this.handler.retornaJS("Deu certo");
+        handler.retornaJS("Deu certo");
     }
 
     /**
