@@ -326,7 +326,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
               PluginResult pgRes = new PluginResult(PluginResult.Status.OK, "message");
               pgRes.setKeepCallback(true);
-              callbackContext.sendPluginResult(pgRes);
+              retorno.sendPluginResult(pgRes);
           } else {
               this.prepareOnly = false;
           }

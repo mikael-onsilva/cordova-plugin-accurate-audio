@@ -68,6 +68,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         PermissionHelper.requestPermission(this, requestCode, permissions[RECORD_AUDIO]);
     }
 
+    public CallbackContext retorno;
 
     /**
      * Executes the request and returns PluginResult.
@@ -80,7 +81,8 @@ public class AccurateAudioHandler extends CordovaPlugin {
         CordovaResourceApi resourceApi = webView.getResourceApi();
         PluginResult.Status status = PluginResult.Status.OK;
         String result = "";
-
+        this.retorno = callbackContext;
+        
         if (action.equals("startPlayingAudio")) {
             String target = args.getString(1);
             String fileUriStr;
