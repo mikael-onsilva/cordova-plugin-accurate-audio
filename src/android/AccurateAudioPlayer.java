@@ -324,7 +324,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
               this.setState(STATE.MEDIA_RUNNING);
               this.seekOnPrepared = 0; //insures this is always reset
               //callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, "teste"));
-              callbackContext.success("teste");
+              handler.callbackContext.success("teste");
           } else {
               this.prepareOnly = false;
           }
