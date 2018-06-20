@@ -302,6 +302,8 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long start = System.currentTimeMillis();
 
     public void agendaPlay(String file, int when) {
+        long tempo = System.currentTimeMillis();
+        long temponano = System.nanoTime();
         arquivo = file;
         quando = when;
         timer = new Timer();
@@ -330,6 +332,9 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
     private void sendRetorno() {
         this.handler.webView.loadUrl("javascript:console.log('" + start + "');");
+        this.handler.webView.loadUrl("javascript:console.log('" + tempo + "');");
+        this.handler.webView.loadUrl("javascript:console.log('" + temponano + "');");
+        this.handler.webView.loadUrl("javascript:console.log('" + (tempo - start) + "');");
         //teste.retornaJS("Deu certo");
     }
 
