@@ -324,7 +324,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
      */
     public void startPlaying(String file) {
         if (this.readyPlayer(file) && this.player != null) {
-            sendRetorno();
+            //sendRetorno();
             this.player.start();
             this.setState(STATE.MEDIA_RUNNING);
             this.seekOnPrepared = 0; //insures this is always reset
