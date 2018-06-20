@@ -184,7 +184,7 @@ function onMessageFromNative(msg) {
     if (msg.action == 'status') {
         AccurateAudio.onStatus(msg.status.id, msg.status.msgType, msg.status.value);
     } else if (msg.action == 'teste') {
-
+    	console.log(msg);
     } else {
         throw new Error('Unknown media action' + msg.action);
     }
