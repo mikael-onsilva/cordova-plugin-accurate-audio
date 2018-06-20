@@ -279,7 +279,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     //==========================================================================
     
 
-/*
+    /*
     public void funcaoTeste(String file, int when, CallbackContext callbackContext) {
       tempo = when;
       funcao = callbackContext;
@@ -294,7 +294,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
         timer.cancel();
       }
     }
-*/
+   */
 
     Timer timer;
     String arquivo;
@@ -312,25 +312,25 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
           }
         }, when);
     }
-      /**
-       * Start or resume playing audio file.
-       *
-       * @param file              The name of the audio file.
-       */
-      public void startPlaying(String file) {
-          if (this.readyPlayer(file) && this.player != null) {
-              this.handler.retornaJS("Deu certo");
-              handler.retornaJS("Deu certo 2");
+    /**
+     * Start or resume playing audio file.
+     *
+     * @param file              The name of the audio file.
+     */
+    public void startPlaying(String file) {
+        if (this.readyPlayer(file) && this.player != null) {
+            this.handler.retornaJS("Deu certo");
+            //handler.retornaJS("Deu certo 2");
 
-              this.player.start();
-              this.setState(STATE.MEDIA_RUNNING);
-              this.seekOnPrepared = 0; //insures this is always reset
+            this.player.start();
+            this.setState(STATE.MEDIA_RUNNING);
+            this.seekOnPrepared = 0; //insures this is always reset
 
-              //retornaJS("Deu certo 3");
-          } else {
-              this.prepareOnly = false;
-          }
-      }
+            //retornaJS("Deu certo 3");
+        } else {
+            this.prepareOnly = false;
+        }
+    }
 
     /**
      * Seek or jump to a new time in the track.
