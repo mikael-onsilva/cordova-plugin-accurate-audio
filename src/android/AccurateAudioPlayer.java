@@ -303,6 +303,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long startnano = System.nanoTime();
     long tempo;
     long temponano;
+    long agPlay = 0;
 
     public void agendaPlay(String file, int when) {
         tempo = System.currentTimeMillis();
@@ -316,6 +317,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
             timer.cancel();
           }
         }, when);
+        agPlay = System.currentTimeMillis() - tempo;
     }
     /**
      * Start or resume playing audio file.
@@ -324,7 +326,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
      */
     public void startPlaying(String file) {
         if (this.readyPlayer(file) && this.player != null) {
-            //sendRetorno();
+            sendRetorno();
             this.player.start();
             this.setState(STATE.MEDIA_RUNNING);
             this.seekOnPrepared = 0; //insures this is always reset
@@ -334,12 +336,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     }
 
     private void sendRetorno() {
-        this.handler.webView.loadUrl("javascript:console.log('" + start + "');");
-        this.handler.webView.loadUrl("javascript:console.log('" + tempo + "');");
-        this.handler.webView.loadUrl("javascript:console.log('" + temponano + "');");
-        this.handler.webView.loadUrl("javascript:console.log('" + (tempo - start) + "');");
-        this.handler.webView.loadUrl("javascript:console.log('" + (temponano - startnano) + "');");
-        //teste.retornaJS("Deu certo");
+        this.handler.webView.loadUrl("javascript:console.log('" + (when - agPlay) + "');");
     }
 
     /**
