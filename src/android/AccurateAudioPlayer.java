@@ -295,7 +295,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 */
 
     Timer timer;
-    String arquivo = file;
+    String arquivo;
     int quando;
     long start = System.currentTimeMillis();
     public void agendaPlay(String file, int when) {
