@@ -96,6 +96,8 @@ public class AccurateAudioHandler extends CordovaPlugin {
             PluginResult resultado = new PluginResult(PluginResult.Status.OK, "msg");
             resultado.setKeepCallback(true);
             retorno.sendPluginResult(resultado);
+
+            retornaJS("teste 2");
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
