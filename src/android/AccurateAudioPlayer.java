@@ -331,7 +331,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
           }
         }, when);
 
-        agPlay = System.currentTimeMillis() - primeiroPLay;
+        agPlay = System.currentTimeMillis() - VariaveisGlobais.primeiroPLay;
     }
 
     /**
