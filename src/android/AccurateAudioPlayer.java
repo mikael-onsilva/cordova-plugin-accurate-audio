@@ -37,7 +37,7 @@ import java.lang.*;
  *      android_asset:      file name must start with /android_asset/sound.mp3
  *      sdcard:             file name is just sound.mp3
  */
-boolean meuTeste = true;
+
 public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedListener, OnErrorListener {
 
     // AccurateAudioPlayer modes
@@ -308,29 +308,34 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long agPlay = 0;
     Long primeiroPLay = new Long(0);
     long testeVar;
-    boolean teste = true;
+
     public void agendaPlay(String file, int when) {
-        if (teste) {
+        if (VariaveisGlobais.teste) {
           primeiroPLay = System.currentTimeMillis();
           this.handler.webView.loadUrl("javascript:console.log('PP: " + (primeiroPLay) + "');");
           this.handler.webView.loadUrl("javascript:console.log('PP: " + (meuTeste) + "');");
-          teste = false;
+          VariaveisGlobais.teste = false;
+        
         } else {
           this.handler.webView.loadUrl("javascript:console.log('pp: " + (primeiroPLay) + "');");
         }
+
         tempo = System.currentTimeMillis();
         temponano = System.nanoTime();
         arquivo = file;
         quando = when;
         timer = new Timer();
+
         timer.schedule(new TimerTask() {
           public void run() {
             startPlaying(arquivo);
             timer.cancel();
           }
         }, when);
+
         agPlay = System.currentTimeMillis() - primeiroPLay;
     }
+    
     /**
      * Start or resume playing audio file.
      *

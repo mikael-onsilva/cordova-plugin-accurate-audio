@@ -27,6 +27,9 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+public class VariaveisGlobais {
+    static boolean teste = true;
+}
 
 public class AccurateAudioHandler extends CordovaPlugin {
 
