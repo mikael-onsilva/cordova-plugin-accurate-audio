@@ -306,18 +306,16 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long tempo;
     long temponano;
     long agPlay = 0;
-    Long primeiroPLay = new Long(0);
-    long testeVar;
 
     public void agendaPlay(String file, int when) {
         if (VariaveisGlobais.teste) {
-          primeiroPLay = System.currentTimeMillis();
-          this.handler.webView.loadUrl("javascript:console.log('PP: " + (primeiroPLay) + "');");
+          VariaveisGlobais.primeiroPLay = System.currentTimeMillis();
+          this.handler.webView.loadUrl("javascript:console.log('PP: " + (VariaveisGlobais.primeiroPLay) + "');");
 
           VariaveisGlobais.teste = false;
         
         } else {
-          this.handler.webView.loadUrl("javascript:console.log('pp: " + (primeiroPLay) + "');");
+          this.handler.webView.loadUrl("javascript:console.log('pp: " + (VariaveisGlobais.primeiroPLay) + "');");
         }
 
         tempo = System.currentTimeMillis();
@@ -354,7 +352,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
     private void sendRetorno() {
         //this.handler.webView.loadUrl("javascript:console.log('" + (quando - agPlay) + "');");
-        this.handler.webView.loadUrl("javascript:console.log('" + (testeVar) + "');");
+        //this.handler.webView.loadUrl("javascript:console.log('" + (testeVar) + "');");
     }
 
     /**

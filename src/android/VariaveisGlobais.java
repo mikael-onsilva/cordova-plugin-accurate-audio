@@ -29,4 +29,5 @@ import java.util.TimerTask;
 
 public class VariaveisGlobais {
     static boolean teste = true;
+    static Long primeiroPLay = new Long(0);
 }
