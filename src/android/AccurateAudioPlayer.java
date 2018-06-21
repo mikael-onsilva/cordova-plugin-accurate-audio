@@ -313,7 +313,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
         if (VariaveisGlobais.teste) {
           primeiroPLay = System.currentTimeMillis();
           this.handler.webView.loadUrl("javascript:console.log('PP: " + (primeiroPLay) + "');");
-          this.handler.webView.loadUrl("javascript:console.log('PP: " + (meuTeste) + "');");
+
           VariaveisGlobais.teste = false;
         
         } else {
@@ -335,7 +335,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
         agPlay = System.currentTimeMillis() - primeiroPLay;
     }
-    
+
     /**
      * Start or resume playing audio file.
      *
