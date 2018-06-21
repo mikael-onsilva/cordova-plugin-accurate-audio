@@ -27,6 +27,9 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+public class VariaveisGlobais {
+    static boolean teste = true;
+}
 
 public class AccurateAudioHandler extends CordovaPlugin {
 
@@ -68,7 +71,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         PermissionHelper.requestPermission(this, requestCode, permissions[RECORD_AUDIO]);
     }
 
-
+    CallbackContext retorno;
     /**
      * Executes the request and returns PluginResult.
      * @param action        The action to execute.
@@ -80,6 +83,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
         CordovaResourceApi resourceApi = webView.getResourceApi();
         PluginResult.Status status = PluginResult.Status.OK;
         String result = "";
+        retorno = callbackContext;
 
         if (action.equals("startPlayingAudio")) {
             String target = args.getString(1);
@@ -90,7 +94,7 @@ public class AccurateAudioHandler extends CordovaPlugin {
             } catch (IllegalArgumentException e) {
                 fileUriStr = target;
             }
-            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getInt(2), callbackContext);
+            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), args.getInt(2));
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
@@ -238,9 +242,9 @@ public class AccurateAudioHandler extends CordovaPlugin {
      * @param file              The name of the audio file.
      * @param when              Quando vai tocar
      */
-    public void startPlayingAudio(String id, String file, int when, CallbackContext callbackContext) {
+    public void startPlayingAudio(String id, String file, int when) {
         AccurateAudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.agendaPlay(file, when, callbackContext);
+        audio.agendaPlay(file, when);
         getAudioFocus();        
     }
 
@@ -421,6 +425,12 @@ public class AccurateAudioHandler extends CordovaPlugin {
             cordova.getActivity().setVolumeControlStream(origVolumeStream);
             origVolumeStream = -1;
         }
+    }
+
+    void retornaJS(String msg) {
+        PluginResult resultado = new PluginResult(PluginResult.Status.OK, msg);
+        resultado.setKeepCallback(true);
+        retorno.sendPluginResult(resultado);
     }
 
     void sendEventMessage(String action, JSONObject actionData) {

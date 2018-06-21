@@ -25,6 +25,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
+import java.lang.*;
 
 
 /**
@@ -36,6 +37,7 @@ import org.apache.cordova.PluginResult;
  *      android_asset:      file name must start with /android_asset/sound.mp3
  *      sdcard:             file name is just sound.mp3
  */
+
 public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedListener, OnErrorListener {
 
     // AccurateAudioPlayer modes
@@ -279,7 +281,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     //==========================================================================
     
 
-/*
+    /*
     public void funcaoTeste(String file, int when, CallbackContext callbackContext) {
       tempo = when;
       funcao = callbackContext;
@@ -294,40 +296,66 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
         timer.cancel();
       }
     }
-*/
+   */
 
     Timer timer;
     String arquivo;
     int quando;
     long start = System.currentTimeMillis();
-    CallbackContext funcaoRetorno;
-    public void agendaPlay(String file, int when, CallbackContext callbackContext) {
+    long startnano = System.nanoTime();
+    long tempo;
+    long temponano;
+    long agPlay = 0;
+    Long primeiroPLay = new Long(0);
+    long testeVar;
+
+    public void agendaPlay(String file, int when) {
+        if (VariaveisGlobais.teste) {
+          primeiroPLay = System.currentTimeMillis();
+          this.handler.webView.loadUrl("javascript:console.log('PP: " + (primeiroPLay) + "');");
+
+          VariaveisGlobais.teste = false;
+        
+        } else {
+          this.handler.webView.loadUrl("javascript:console.log('pp: " + (primeiroPLay) + "');");
+        }
+
+        tempo = System.currentTimeMillis();
+        temponano = System.nanoTime();
         arquivo = file;
         quando = when;
-        funcaoRetorno = callbackContext;
         timer = new Timer();
+
         timer.schedule(new TimerTask() {
           public void run() {
-            startPlaying(arquivo, funcaoRetorno);
+            startPlaying(arquivo);
             timer.cancel();
           }
         }, when);
+
+        agPlay = System.currentTimeMillis() - primeiroPLay;
     }
-      /**
-       * Start or resume playing audio file.
-       *
-       * @param file              The name of the audio file.
-       */
-      public void startPlaying(String file, CallbackContext callbackContext) {
-          if (this.readyPlayer(file) && this.player != null) {
-              this.player.start();
-              this.setState(STATE.MEDIA_RUNNING);
-              this.seekOnPrepared = 0; //insures this is always reset
-              callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, "teste"));
-          } else {
-              this.prepareOnly = false;
-          }
-      }
+
+    /**
+     * Start or resume playing audio file.
+     *
+     * @param file              The name of the audio file.
+     */
+    public void startPlaying(String file) {
+        if (this.readyPlayer(file) && this.player != null) {
+            //sendRetorno();
+            this.player.start();
+            this.setState(STATE.MEDIA_RUNNING);
+            this.seekOnPrepared = 0; //insures this is always reset
+        } else {
+            this.prepareOnly = false;
+        }
+    }
+
+    private void sendRetorno() {
+        //this.handler.webView.loadUrl("javascript:console.log('" + (quando - agPlay) + "');");
+        this.handler.webView.loadUrl("javascript:console.log('" + (testeVar) + "');");
+    }
 
     /**
      * Seek or jump to a new time in the track.
