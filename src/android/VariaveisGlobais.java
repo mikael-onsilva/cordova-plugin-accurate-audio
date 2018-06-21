@@ -30,4 +30,6 @@ import java.util.TimerTask;
 public class VariaveisGlobais {
     static boolean teste = true;
     static Long primeiroPLay = new Long(0);
+    static long agPlay = 0;
+    static long tempoInicial = System.currentTimeMillis();
 }

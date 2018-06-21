@@ -305,7 +305,6 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     long startnano = System.nanoTime();
     long tempo;
     long temponano;
-    long agPlay = 0;
 
     public void agendaPlay(String file, int when) {
         if (VariaveisGlobais.teste) {
@@ -329,9 +328,9 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
             startPlaying(arquivo);
             timer.cancel();
           }
-        }, when);
-
-        agPlay = System.currentTimeMillis() - VariaveisGlobais.primeiroPLay;
+        }, (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)));
+        
+        this.handler.webView.loadUrl("javascript:console.log('" + (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)) + "');");
     }
 
     /**
