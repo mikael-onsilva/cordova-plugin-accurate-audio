@@ -33,5 +33,6 @@
 		<source-file src="src/android/AccurateAudioHandler.java" target-dir="src/cordova/accurate/audio/AccurateAudioHandler" />
 		<source-file src="src/android/AccurateAudioPlayer.java" target-dir="src/cordova/accurate/audio/AccurateAudioPlayer" />
 		<source-file src="src/android/FileHelper.java" target-dir="src/cordova/accurate/audio/FileHelper" />
+		<source-file src="src/android/VariaveisGlobais.java" target-dir="src/cordova/accurate/audio/VariaveisGlobais" />
 	</platform>
 </plugin>
