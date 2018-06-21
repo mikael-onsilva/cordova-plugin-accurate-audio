@@ -300,27 +300,14 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
     Timer timer;
     String arquivo;
-    int quando;
-    long start = System.currentTimeMillis();
-    long startnano = System.nanoTime();
-    long tempo;
-    long temponano;
 
     public void agendaPlay(String file, int when) {
         if (VariaveisGlobais.teste) {
           VariaveisGlobais.primeiroPLay = System.currentTimeMillis();
-          this.handler.webView.loadUrl("javascript:console.log('PP: " + (VariaveisGlobais.primeiroPLay) + "');");
-
           VariaveisGlobais.teste = false;
-        
-        } else {
-          this.handler.webView.loadUrl("javascript:console.log('pp: " + (VariaveisGlobais.primeiroPLay) + "');");
         }
 
-        tempo = System.currentTimeMillis();
-        temponano = System.nanoTime();
         arquivo = file;
-        quando = when;
         timer = new Timer();
 
         timer.schedule(new TimerTask() {
@@ -330,7 +317,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
           }
         }, (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)));
         
-        this.handler.webView.loadUrl("javascript:console.log('" + (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)) + "');");
+        //this.handler.webView.loadUrl("javascript:console.log('" + (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)) + "');");
     }
 
     /**
@@ -340,18 +327,12 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
      */
     public void startPlaying(String file) {
         if (this.readyPlayer(file) && this.player != null) {
-            //sendRetorno();
             this.player.start();
             this.setState(STATE.MEDIA_RUNNING);
             this.seekOnPrepared = 0; //insures this is always reset
         } else {
             this.prepareOnly = false;
         }
-    }
-
-    private void sendRetorno() {
-        //this.handler.webView.loadUrl("javascript:console.log('" + (quando - agPlay) + "');");
-        //this.handler.webView.loadUrl("javascript:console.log('" + (testeVar) + "');");
     }
 
     /**
