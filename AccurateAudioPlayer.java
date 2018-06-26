@@ -300,30 +300,16 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
     Timer timer;
     String arquivo;
-    int quando;
-    long start = System.currentTimeMillis();
-    long startnano = System.nanoTime();
-    long tempo;
-    long temponano;
-    long agPlay = 0;
-    Long primeiroPLay = new Long(0);
-    long testeVar;
 
     public void agendaPlay(String file, int when) {
-        if (VariaveisGlobais.teste) {
-          primeiroPLay = System.currentTimeMillis();
-          this.handler.webView.loadUrl("javascript:console.log('PP: " + (primeiroPLay) + "');");
+       this.handler.webView.loadUrl("javascript:console.log('agendaPlay');");
 
+        if (VariaveisGlobais.teste) {
+          VariaveisGlobais.primeiroPLay = System.currentTimeMillis();
           VariaveisGlobais.teste = false;
-        
-        } else {
-          this.handler.webView.loadUrl("javascript:console.log('pp: " + (primeiroPLay) + "');");
         }
 
-        tempo = System.currentTimeMillis();
-        temponano = System.nanoTime();
         arquivo = file;
-        quando = when;
         timer = new Timer();
 
         timer.schedule(new TimerTask() {
@@ -331,9 +317,9 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
             startPlaying(arquivo);
             timer.cancel();
           }
-        }, when);
-
-        agPlay = System.currentTimeMillis() - primeiroPLay;
+        }, (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)));
+        
+       this.handler.webView.loadUrl("javascript:console.log('" + (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)) + "');");
     }
 
     /**
@@ -342,19 +328,17 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
      * @param file              The name of the audio file.
      */
     public void startPlaying(String file) {
+        this.handler.webView.loadUrl("javascript:console.log(" + this.readyPlayer(file) + ");");
+        this.handler.webView.loadUrl("javascript:console.log(" + this.player + ");");
         if (this.readyPlayer(file) && this.player != null) {
-            //sendRetorno();
+            this.handler.webView.loadUrl("javascript:console.log('true');");
             this.player.start();
             this.setState(STATE.MEDIA_RUNNING);
             this.seekOnPrepared = 0; //insures this is always reset
         } else {
+            this.handler.webView.loadUrl("javascript:console.log('false');");
             this.prepareOnly = false;
         }
-    }
-
-    private void sendRetorno() {
-        //this.handler.webView.loadUrl("javascript:console.log('" + (quando - agPlay) + "');");
-        this.handler.webView.loadUrl("javascript:console.log('" + (testeVar) + "');");
     }
 
     /**
