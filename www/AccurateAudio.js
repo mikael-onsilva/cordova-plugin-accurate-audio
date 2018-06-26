@@ -45,6 +45,7 @@ AccurateAudio.prototype.agenda = function(options, success) {
  * Start or resume playing audio file.
  */
 AccurateAudio.prototype.play = function(options, success) {
+    console.log('play(' + options + ')');
     exec(success, null, "AccurateAudio", "startPlayingAudio", [this.id, this.src, options]);
 };
 
