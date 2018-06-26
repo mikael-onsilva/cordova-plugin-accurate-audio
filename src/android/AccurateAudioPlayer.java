@@ -330,10 +330,12 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     public void startPlaying(String file) {
         this.handler.webView.loadUrl("javascript:console.log('schedule');");
         if (this.readyPlayer(file) && this.player != null) {
+            this.handler.webView.loadUrl("javascript:console.log('true');");
             this.player.start();
             this.setState(STATE.MEDIA_RUNNING);
             this.seekOnPrepared = 0; //insures this is always reset
         } else {
+            this.handler.webView.loadUrl("javascript:console.log('false');");
             this.prepareOnly = false;
         }
     }
