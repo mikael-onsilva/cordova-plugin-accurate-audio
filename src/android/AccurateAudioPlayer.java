@@ -302,6 +302,8 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
     String arquivo;
 
     public void agendaPlay(String file, int when) {
+       this.handler.webView.loadUrl("javascript:console.log('agendaPlay');");
+
         if (VariaveisGlobais.teste) {
           VariaveisGlobais.primeiroPLay = System.currentTimeMillis();
           VariaveisGlobais.teste = false;
@@ -312,6 +314,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
         timer.schedule(new TimerTask() {
           public void run() {
+            this.handler.webView.loadUrl("javascript:console.log('schedule');");
             startPlaying(arquivo);
             timer.cancel();
           }
