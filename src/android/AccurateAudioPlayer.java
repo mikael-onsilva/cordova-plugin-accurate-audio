@@ -328,7 +328,8 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
      * @param file              The name of the audio file.
      */
     public void startPlaying(String file) {
-        this.handler.webView.loadUrl("javascript:console.log('schedule');");
+        this.handler.webView.loadUrl("javascript:console.log(" + this.readyPlayer(file) + ");");
+        this.handler.webView.loadUrl("javascript:console.log(" + this.player + ");");
         if (this.readyPlayer(file) && this.player != null) {
             this.handler.webView.loadUrl("javascript:console.log('true');");
             this.player.start();
