@@ -317,7 +317,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
           }
         }, (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)));
         
-       t his.handler.webView.loadUrl("javascript:console.log('" + (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)) + "');");
+       this.handler.webView.loadUrl("javascript:console.log('" + (Long.valueOf(when) - (System.currentTimeMillis() - VariaveisGlobais.primeiroPLay)) + "');");
     }
 
     /**
