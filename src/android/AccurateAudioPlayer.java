@@ -314,7 +314,6 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
 
         timer.schedule(new TimerTask() {
           public void run() {
-            this.handler.webView.loadUrl("javascript:console.log('schedule');");
             startPlaying(arquivo);
             timer.cancel();
           }
@@ -329,6 +328,7 @@ public class AccurateAudioPlayer implements OnCompletionListener, OnPreparedList
      * @param file              The name of the audio file.
      */
     public void startPlaying(String file) {
+        this.handler.webView.loadUrl("javascript:console.log('schedule');");
         if (this.readyPlayer(file) && this.player != null) {
             this.player.start();
             this.setState(STATE.MEDIA_RUNNING);
